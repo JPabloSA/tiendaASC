@@ -1,0 +1,43 @@
+{% extends 'baserecepcion.html.twig' %}
+{% block style_body %}
+  <body>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <h1 class="alert-info">Pedidos</h1>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+          <tr>
+            <td>{{pedido.Fecha | date('d-m-Y')}}</td>
+            <td>{{pedido.Usuariousuario.UsNombre}}</td>
+            <td>
+              {% if pedido.EstadoEntrega == 1 %}
+                <span class="btn btn-danger">No completado</span>
+              {% endif %}
+              {% if pedido.EstadoEntrega == 1 %}
+                <span class="btn btn-success">No completado</span>
+              {% endif %}
+              
+            </td>
+          </tr>
+        {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+	
+    
+{% endblock %}

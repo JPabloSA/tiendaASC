@@ -1,0 +1,88 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EntregaProductos
+ *
+ * @ORM\Table(name="entrega_productos", indexes={@ORM\Index(name="fk_CompraFactura_Usuarios1_idx", columns={"Usuarios_idUsuarios"}), @ORM\Index(name="fk_entrega_productos_socias1_idx", columns={"socias_idsocias"})})
+ * @ORM\Entity
+ */
+class EntregaProductos
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="identrega_detalle", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $identregaDetalle;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="date", nullable=true)
+     */
+    private $fecha = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="no_comprobante", type="string", length=200, nullable=false)
+     */
+    private $noComprobante;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="total_comprobante", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $totalComprobante = 'NULL';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="saldo_socias", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $saldoSocias;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="estado_entrega", type="integer", nullable=false)
+     */
+    private $estadoEntrega;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccionenvio", type="string", length=400, nullable=true)
+     */
+    private $direccionenvio = 'NULL';
+
+    /**
+     * @var \Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Usuarios_idUsuarios", referencedColumnName="idUsuarios")
+     * })
+     */
+    private $usuariosusuarios;
+
+    /**
+     * @var \Socias
+     *
+     * @ORM\ManyToOne(targetEntity="Socias")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="socias_idsocias", referencedColumnName="idsocias")
+     * })
+     */
+    private $sociassocias;
+
+
+}
+

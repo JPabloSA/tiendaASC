@@ -1,0 +1,16 @@
+{% extends 'baserecepcion.html.twig' %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="alert alert-info">Crear nueva categoria</h1>
+	</div>
+
+	<div class="col-md-6">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		<br>
+		<input type="submit" class="btn btn-success" value="Guardar">
+		{{ form_end(form) }}
+	</div>    
+{% endblock %}
+

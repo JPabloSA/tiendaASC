@@ -1,0 +1,51 @@
+{% extends 'baserecepcion.html.twig' %}
+{% block style_body %}
+  <body>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <h1 class="alert-info">Inventario</h1>
+    <a class="btn btn-success btn-lg" href="{{path('nuevoProducto')}}">
+      <i class="fas fa-plus fa-plus" aria-hidden="true"></i> Crear producto
+    </a>
+    <a class="btn btn-success btn-lg" href="{{path('nuevaCategoria')}}">
+      <i class="fas fa-plus fa-plus" aria-hidden="true"></i> Crear categoria
+    </a>
+    <br><br>
+    <h2>Lista productos</h2>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Exitencia</th>
+            <th>Precio Compra</th>
+            <th>Precio Venta</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for producto in productos %}
+            <tr>
+            <td>{{producto.ProNombre}}</td>
+            <td>{{producto.ProStock}}</td>
+            <td>{{producto.ProPreciocompra}}</td>
+            <td>{{producto.ProPrecioventa}}</td>
+            <td>
+              <a class="btn btn-primary" href="#">
+                <i class="fas fa-edit fa-1x"></i> Editar
+              </a>
+            </td>
+          </tr>  
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+	
+    
+{% endblock %}

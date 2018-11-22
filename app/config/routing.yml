@@ -1,0 +1,90 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+login_check:
+  path: /login_check
+
+logout:
+  path: /logout
+
+principal:
+  path: /
+  defaults: { _controller: AppBundle:Default:index }
+
+login:
+  path: /login
+  defaults: { _controller: AppBundle:Default:login }
+
+recepcionPage:
+  path: /recepcionPage
+  defaults: { _controller: AppBundle:Recepcion:index }
+
+clientePage:
+  path: /clientePage
+  defaults: { _controller: AppBundle:Cliente:index }
+
+#funciones de empresa
+
+pedidosRecepcion:
+  path: /pedidosRecepcion
+  defaults: { _controller: AppBundle:Recepcion:pedidosRecepcion }
+
+entregasRecepcion:
+  path: /entregasRecepcion
+  defaults: { _controller: AppBundle:Recepcion:entregasRecepcion }
+
+inventarioRecepcion:
+  path: /inventarioRecepcion
+  defaults: { _controller: AppBundle:Recepcion:inventarioRecepcion }
+
+categoriasInventario:
+  path: /categoriasInventario
+  defaults: { _controller: AppBundle:Recepcion:categoriasInventario }
+
+nuevaCategoria:
+  path: /nuevaCategoria
+  defaults: { _controller: AppBundle:Recepcion:nuevaCategoria }
+
+productosInventario:
+  path: /categoriasInventario
+  defaults: { _controller: AppBundle:Recepcion:productosInventario }
+
+nuevoProducto:
+  path: /nuevoProducto
+  defaults: { _controller: AppBundle:Recepcion:nuevoProducto }
+
+reportesRecepcion:
+  path: /reportesRecepcion
+  defaults: { _controller: AppBundle:Recepcion:reportesRecepcion }
+
+#funciones de catalogo
+
+catalogoProductos:
+  path: /catalogoProductos
+  defaults: { _controller: AppBundle:Recepcion:catalogoProductos }
+
+#funciones del cliente
+
+carrito:
+  path: /carrito
+  defaults: { _controller: AppBundle:Cliente:carrito }
+
+agregar:
+  path: /agregar
+  defaults: { _controller: AppBundle:Cliente:agregar }
+
+quitar:
+  path: /quitar
+  defaults: { _controller: AppBundle:Cliente:quitar }
+
+pedir:
+  path: /pedir
+  defaults: { _controller: AppBundle:Cliente:pedir }
+
+cancelarPedido:
+  path: /cancelarPedido
+  defaults: { _controller: AppBundle:Cliente:cancelarPedido }
+
+
+

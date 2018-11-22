@@ -1,0 +1,78 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Productos
+ *
+ * @ORM\Table(name="productos", indexes={@ORM\Index(name="fk_productos_Categoria1_idx", columns={"Categoria_idCategoria"})})
+ * @ORM\Entity
+ */
+class Productos
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idProducto", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idproducto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pro_nombre", type="string", length=45, nullable=true)
+     */
+    private $proNombre = 'NULL';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pro_stock", type="integer", nullable=true)
+     */
+    private $proStock = 'NULL';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="pro_stock_minimo", type="integer", nullable=true)
+     */
+    private $proStockMinimo = 'NULL';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pro_preciocompra", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $proPreciocompra = 'NULL';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="pro_precioventa", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $proPrecioventa = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="img", type="string", length=200, nullable=false)
+     */
+    private $img;
+
+    /**
+     * @var \Categoria
+     *
+     * @ORM\ManyToOne(targetEntity="Categoria")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Categoria_idCategoria", referencedColumnName="idCategoria")
+     * })
+     */
+    private $categoriacategoria;
+
+
+}
+

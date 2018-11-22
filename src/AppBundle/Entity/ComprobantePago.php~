@@ -1,0 +1,74 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ComprobantePago
+ *
+ * @ORM\Table(name="comprobante_pago", indexes={@ORM\Index(name="fk_comprobante_pago_entrega_productos1_idx", columns={"entrega_productos_identrega_detalle"}), @ORM\Index(name="fk_comprobante_pago_socias1_idx", columns={"socias_idsocias"})})
+ * @ORM\Entity
+ */
+class ComprobantePago
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idComprobantePago", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcomprobantepago;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="monto", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $monto = 'NULL';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tipoPago", type="integer", nullable=true)
+     */
+    private $tipopago = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="num_comprobante", type="string", length=100, nullable=true)
+     */
+    private $numComprobante = 'NULL';
+
+    /**
+     * @var \EntregaProductos
+     *
+     * @ORM\ManyToOne(targetEntity="EntregaProductos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="entrega_productos_identrega_detalle", referencedColumnName="identrega_detalle")
+     * })
+     */
+    private $entregaProductosentregaDetalle;
+
+    /**
+     * @var \Socias
+     *
+     * @ORM\ManyToOne(targetEntity="Socias")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="socias_idsocias", referencedColumnName="idsocias")
+     * })
+     */
+    private $sociassocias;
+
+
+}
+

@@ -1,0 +1,75 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usuario
+ *
+ * @ORM\Table(name="usuario")
+ * @ORM\Entity
+ */
+class Usuario
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idUsuarios", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idusuarios;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="us_nombre", type="string", length=45, nullable=true)
+     */
+    private $usNombre = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="us_direccion", type="string", length=45, nullable=true)
+     */
+    private $usDireccion = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="us_telefono", type="string", length=45, nullable=true)
+     */
+    private $usTelefono = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=45, nullable=true)
+     */
+    private $username = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=200, nullable=true)
+     */
+    private $password = 'NULL';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="estado", type="integer", nullable=true)
+     */
+    private $estado = 'NULL';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rol", type="string", length=50, nullable=true)
+     */
+    private $rol = 'NULL';
+
+
+}
+
