@@ -1,0 +1,26 @@
+{% extends 'basecliente.html.twig' %}
+
+{% block title %}Registro Cliente{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid">
+        <br><br>
+            <h2>Registro de cliente</h2>
+            <br>
+        </div>
+        <div class="container">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <br>
+            <input type="submit" class="btn btn-success" value="Guardar">
+            {{ form_end(form) }}
+        </div>    
+    </div>
+</div>
+
+
+
+{% endblock %}

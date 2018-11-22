@@ -66,6 +66,10 @@ catalogoProductos:
 
 #funciones del cliente
 
+registroCliente:
+  path: /registroCliente
+  defaults: { _controller: AppBundle:Cliente:registroCliente }
+
 carrito:
   path: /carrito
   defaults: { _controller: AppBundle:Cliente:carrito }

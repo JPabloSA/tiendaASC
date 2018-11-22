@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\DetalleEntrega;
 use AppBundle\Entity\EntregaProductos;
+use AppBundle\Entity\Usuario;
+use AppBundle\Form\UsuarioType;
 
 class ClienteController extends Controller
 {
@@ -15,6 +17,26 @@ class ClienteController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render("cliente/clientePage.html.twig");
+    }
+
+    public function registroClienteAction(Request $request){
+        $usuario=new Usuario();
+        $form = $this->createForm(UsuarioType::class, $usuario);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $usuario = $form->getData();
+
+        	$em = $this->getDoctrine()->getManager();
+        	$em->persist($usuario);
+        	$em->flush();
+            return $this->redirectToRoute('login');
+        }
+
+        return $this->render('cliente/registroCliente.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     public function carritoAction(){

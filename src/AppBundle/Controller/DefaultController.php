@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Productos;
+use AppBundle\Entity\DetalleEntrega;
+use AppBundle\Entity\EntregaProductos;
 
 class DefaultController extends Controller
 {
@@ -14,10 +16,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        
         $productos = $this->getDoctrine()->getRepository(Productos::class)->findAll();
+        
         return $this->render('default/index.html.twig',array(
-            'productos' => $productos
+            'productos' => $productos,
         ));
+    }
+
+    private function cantPedido(){
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $pedido = $this->getDoctrine()->getRepository(EntregaProductos::class)->findOneBy(array('usuariosusuarios' => $user, 'estadoEntrega'=>'0'));
+        $detalles=$this->getDoctrine()->getRepository(DetalleEntrega::class)->findByEntregaProductosentregaDetalle($pedido);
+        $cantidad=count($detalles);
+        
+        return $cantidad;
     }
 
     public function loginAction()
