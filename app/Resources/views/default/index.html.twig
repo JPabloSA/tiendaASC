@@ -1,4 +1,4 @@
-{% extends 'basecliente.html.twig' %}
+{% extends 'basecatalogo.html.twig' %}
 
 {% block body %}
 
@@ -62,9 +62,9 @@
                 </div>
                 <div class="card-footer">
                   {% if app.user != null %}
-                    <button class="btn btn-warning">
+                    <a class="btn btn-warning" href="{{path('agregar', {id:producto.Idproducto})}}">
                       <i class="fas fa-plus-circle"></i> Agregar
-                    </button>
+                    </a>
                   
                   {% endif %}
                   {% if app.user == null %}

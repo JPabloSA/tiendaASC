@@ -59,9 +59,9 @@ class Productos
     /**
      * @var string
      *
-     * @ORM\Column(name="img", type="string", length=200, nullable=false)
+     * @ORM\Column(name="img", type="string", length=200, nullable=true)
      */
-    private $img;
+    private $img = 'NULL';
 
     /**
      * @var \Categoria

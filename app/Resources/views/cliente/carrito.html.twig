@@ -6,12 +6,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="container-fluid">
+                <br>
                 <h2 class="alert alert-info">Mi carrito</h2>    
             </div>
 
             <div class="container">
                 <div class="table-responsive">
-                <table class="table">
+                <table class="table table-borderless">
                     <thead>
                         <tr>
                             <th>Producto</th>
@@ -22,21 +23,34 @@
                     <tbody>
                         {% for detalle in detalles %}
                          <tr>
-                            <td>{{detalle.Productosproductos.ProNombre}}</td>
+                            <td>{{detalle.Productoproducto.ProNombre}}</td>
                             <td>{{detalle.CantidadProducto}}</td>
                             <td>{{detalle.TotalDetalle}}</td>
+                            <td>
+                                <a class="btn btn-danger" href="{{path('quitar',{id:detalle.IddetalleCompra})}}">
+                                    <i class="fas fa-trash-alt"></i> Quitar
+                                </a>
+                            </td>
                         </tr>       
                         {% endfor %}
                         
                     </tbody>
                 </table>
                 </div>
+                
             </div>
         </div>
 
         <div class="container">
-            <button class="btn btn-success btn-lg" onclick="msj_pedido()">Pedir</button>
-            <button class="btn btn-danger btn-lg">Cancelar</button>
+            {% if detalles != null %}
+                <br><br>
+                <h2>Total: {{pedido.SaldoSocias}}</h2>
+                <button class="btn btn-success btn-lg" onclick="msj_pedido()">Pedir</button>
+                <button class="btn btn-danger btn-lg">Cancelar</button>
+            {% endif %}
+            
+            
+            
         </div>
     </div>
 
@@ -51,12 +65,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        Add rows here
+                        Esta seguro de realizar el pedido
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary">Si</button>
                 </div>
             </div>
         </div>

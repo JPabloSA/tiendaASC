@@ -75,11 +75,11 @@ carrito:
   defaults: { _controller: AppBundle:Cliente:carrito }
 
 agregar:
-  path: /agregar
+  path: /agregar/{id}
   defaults: { _controller: AppBundle:Cliente:agregar }
 
 quitar:
-  path: /quitar
+  path: /quitar/{id}
   defaults: { _controller: AppBundle:Cliente:quitar }
 
 pedir:

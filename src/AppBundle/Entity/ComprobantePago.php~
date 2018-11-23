@@ -24,9 +24,9 @@ class ComprobantePago
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     * @ORM\Column(name="fecha", type="datetime", nullable=true)
      */
-    private $fecha;
+    private $fecha = 'NULL';
 
     /**
      * @var float

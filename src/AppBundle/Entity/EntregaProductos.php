@@ -31,9 +31,9 @@ class EntregaProductos
     /**
      * @var string
      *
-     * @ORM\Column(name="no_comprobante", type="string", length=200, nullable=false)
+     * @ORM\Column(name="no_comprobante", type="string", length=200, nullable=true)
      */
-    private $noComprobante;
+    private $noComprobante = 'NULL';
 
     /**
      * @var float
@@ -45,16 +45,16 @@ class EntregaProductos
     /**
      * @var float
      *
-     * @ORM\Column(name="saldo_socias", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="saldo_socias", type="float", precision=10, scale=0, nullable=true)
      */
-    private $saldoSocias;
+    private $saldoSocias = 'NULL';
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="estado_entrega", type="integer", nullable=false)
+     * @ORM\Column(name="estado_entrega", type="integer", nullable=true)
      */
-    private $estadoEntrega;
+    private $estadoEntrega = 'NULL';
 
     /**
      * @var string

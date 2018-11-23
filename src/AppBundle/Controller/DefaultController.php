@@ -21,6 +21,7 @@ class DefaultController extends Controller
         
         return $this->render('default/index.html.twig',array(
             'productos' => $productos,
+            'cantidad' => $this->cantPedido()
         ));
     }
 
