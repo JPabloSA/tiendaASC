@@ -1,0 +1,39 @@
+{% extends 'baserecepcion.html.twig' %}
+{% block style_body %}
+  <body>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <h1 class="alert-info">Seleccione Socia</h1>
+
+    <br><br>
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Nombres</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for socia in socias %}
+            <tr>
+              <td>{{socia.SocDatos}}</td>
+              <td>{{socia.SocDireccion}}</td>
+              <td>{{socia.SocTelefono}}</td>
+              <td>
+                <a class="btn btn-secondary" href="{{path('asignacionSocia',{id:pedido.IdentregaDetalle,id2:socia.Idsocias})}}">Seleccionar</a>
+              </td>
+            </tr>  
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+	
+    
+{% endblock %}

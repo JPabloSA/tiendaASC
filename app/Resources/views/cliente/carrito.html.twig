@@ -46,7 +46,7 @@
                 <br><br>
                 <h2>Total: {{pedido.SaldoSocias}}</h2>
                 <button class="btn btn-success btn-lg" onclick="msj_pedido()">Pedir</button>
-                <button class="btn btn-danger btn-lg">Cancelar</button>
+                <a class="btn btn-danger btn-lg" href="{{path('cancelarPedido',{id:pedido.IdentregaDetalle})}}">Cancelar</a>
             {% endif %}
             
             
@@ -65,12 +65,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        Esta seguro de realizar el pedido
+                    <label for="direccion">Direccion de envio</label>
+                    <input class="form-control" type="text" id="direccion">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary">Si</button>
+                    {% if pedido != null %}
+                        <button type="button" class="btn btn-primary" onclick="pedir_det({{pedido.IdentregaDetalle}})">Si</button>
+                    {% endif %}
+                    
+                    
                 </div>
             </div>
         </div>
@@ -84,6 +89,27 @@
 <script type="text/javascript">
     function msj_pedido(){
         $("#detallePedido").modal("show");
+    }
+
+    function pedir_det(idp){
+        var envio=$("#direccion").val();
+        if(envio!=""){
+            $.ajax({
+                type: "POST",
+                url: "{{path('pedir')}}",
+                data:{ 
+                    id:idp,
+                    dir:envio
+                },
+                success: function () {
+                    var url = "{{path('principal')}}"; 
+                    $(location).attr('href',url);
+                }
+            });
+        }else{
+            alert("Complete direccion de envio");
+        }
+        
     }
 </script>
 {% endblock %}

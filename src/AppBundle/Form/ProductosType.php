@@ -34,7 +34,8 @@ class ProductosType extends AbstractType
             ))
             ->add('img', FileType::class, array(
                 "label" => "Imagen:",
-                "attr" =>array("class" => "form-control")
+                "attr" =>array("class" => "form-control"),
+                "data_class" => null
             ))
             ->add('categoriacategoria', EntityType::class, array(
                 // looks for choices from this entity

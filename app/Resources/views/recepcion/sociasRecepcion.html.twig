@@ -1,0 +1,40 @@
+{% extends 'baserecepcion.html.twig' %}
+{% block style_body %}
+  <body>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <h1 class="alert-info">Socias</h1>
+
+    <a class="btn btn-success" href="{{path('nuevaSocia')}}">Nueva Socia</a>
+
+    <br><br>
+    <div class="table-responsive">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th>Nombres</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+            <th>Saldo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for socia in socias %}
+            <tr>
+              <td>{{socia.SocDatos}}</td>
+              <td>{{socia.SocDireccion}}</td>
+              <td>{{socia.SocTelefono}}</td>
+              <td>{{socia.Saldo}}</td>
+            </tr>  
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+	
+    
+{% endblock %}

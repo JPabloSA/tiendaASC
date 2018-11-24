@@ -30,9 +30,29 @@ pedidosRecepcion:
   path: /pedidosRecepcion
   defaults: { _controller: AppBundle:Recepcion:pedidosRecepcion }
 
-entregasRecepcion:
-  path: /entregasRecepcion
-  defaults: { _controller: AppBundle:Recepcion:entregasRecepcion }
+detallePedido:
+  path: /detallePedido/{id}
+  defaults: { _controller: AppBundle:Recepcion:detallePedido }
+
+asignarSocia:
+  path: /asignarSocia/{id}
+  defaults: { _controller: AppBundle:Recepcion:asignarSocia }
+
+asignacionSocia:
+  path: /asignacionSocia/{id}/{id2}
+  defaults:  { _controller: AppBundle:Recepcion:asignacionSocia }
+
+completarPedido:
+  path: /completarPedido/{id}
+  defaults: { _controller: AppBundle:Recepcion:completarPedido }
+
+sociasRecepcion:
+  path: /sociasRecepcion
+  defaults: { _controller: AppBundle:Recepcion:sociasRecepcion }
+
+nuevaSocia:
+  path: /nuevaSocia
+  defaults: { _controller: AppBundle:Recepcion:nuevaSocia }
 
 inventarioRecepcion:
   path: /inventarioRecepcion
@@ -87,7 +107,7 @@ pedir:
   defaults: { _controller: AppBundle:Cliente:pedir }
 
 cancelarPedido:
-  path: /cancelarPedido
+  path: /cancelarPedido/{id}
   defaults: { _controller: AppBundle:Cliente:cancelarPedido }
 
 

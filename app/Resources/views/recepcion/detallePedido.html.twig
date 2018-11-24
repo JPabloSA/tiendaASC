@@ -1,0 +1,46 @@
+{% extends 'baserecepcion.html.twig' %}
+
+{% block title %}Detalle pedido{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="alert-info">Detalle Pedido</h1>
+        
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for detalle in detalles %}
+                         <tr>
+                            <td>{{detalle.Productoproducto.ProNombre}}</td>
+                            <td>{{detalle.CantidadProducto}}</td>
+                            <td>{{detalle.TotalDetalle}}</td>
+                        </tr>       
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container">
+            {% if pedido.Sociassocias == null %}
+                <a class="btn btn-warning" href="{{path('asignarSocia',{id:pedido.IdentregaDetalle})}}">Asignar Socia</a>
+            {% endif %}
+
+            {% if pedido.Sociassocias != null %}
+                <a class="btn btn-success" href="{{path('completarPedido',{id:pedido.IdentregaDetalle})}}">Completar pedido</a>
+            {% endif %}
+            
+            <a class="btn btn-danger" href="{{path('pedidosRecepcion')}}">Cancelar</a>
+        </div>
+    </div>
+
+{% endblock %}

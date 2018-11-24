@@ -10,6 +10,7 @@ use AppBundle\Entity\EntregaProductos;
 use AppBundle\Entity\Usuario;
 use AppBundle\Form\UsuarioType;
 use AppBundle\Entity\Productos;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClienteController extends Controller
 {
@@ -138,11 +139,36 @@ class ClienteController extends Controller
 
     }
 
-    public function pedirAction(){
+    public function pedirAction(Request $request)
+    {
+        $id=$request->request->get("id");
+        $direccion=$request->request->get("dir");
+        $em = $this->getDoctrine()->getManager();
 
+        $pedido = $this->getDoctrine()->getRepository(EntregaProductos::class)->findOneByIdentregaDetalle($id);
+        $pedido->setEstadoEntrega(1);
+        $pedido->setDireccionenvio($direccion);
+        $em->flush();
+
+        return new Response("hecho");
     }
 
-    public function cancelarPedidoAction(){
+    public function cancelarPedidoAction($id){
+        $em = $this->getDoctrine()->getManager();
+
+        $pedido = $this->getDoctrine()->getRepository(EntregaProductos::class)->findOneByIdentregaDetalle($id);
+        $detalles = $this->getDoctrine()->getRepository(DetalleEntrega::class)->findByEntregaProductosentregaDetalle($pedido);
+
+        foreach ($detalles as $det) {
+            $em->remove($det);
+            $em->flush();
+        }
+
+        $em->remove($pedido);
+        $em->flush();
+
+        return $this->redirectToRoute('principal');
+
 
     }
 

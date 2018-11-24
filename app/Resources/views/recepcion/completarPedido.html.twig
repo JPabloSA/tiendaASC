@@ -1,0 +1,42 @@
+{% extends 'baserecepcion.html.twig' %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="alert alert-info">Completar pago</h1>
+	</div>
+
+	<div class="col-md-6">
+		{{ form_start(form, { 'attr': {'class': 'form-group','id':'form_pago'}}) }}
+		{{ form_widget(form) }}
+		<br>
+		<input type="submit" class="btn btn-success" value="Guardar">
+		{{ form_end(form) }}
+        <a class="btn btn-danger" href="{{path('pedidosRecepcion')}}">Cancelar</a>
+	</div>    
+{% endblock %}
+
+{% block script_extra %}
+
+<script>
+
+        $('#form_pago').submit(function (e) {
+        e.preventDefault();
+        var form =$(this);
+        $.ajax({
+            type:form.attr('method'),
+            url:"{{path("completarPedido",{id:pedido.IdentregaDetalle})}}",
+            data:form.serialize(),
+            success: function () {
+                var url = "{{path('pedidosRecepcion')}}"; 
+                $(location).attr('href',url);
+            },
+            error: function(){
+
+              }
+
+        });
+    });
+</script>
+
+{% endblock %}
+
