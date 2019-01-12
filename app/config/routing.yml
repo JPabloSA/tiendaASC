@@ -78,6 +78,18 @@ reportesRecepcion:
   path: /reportesRecepcion
   defaults: { _controller: AppBundle:Recepcion:reportesRecepcion }
 
+reporteFechaelegir:
+  path: /reporteFechaelegir
+  defaults: { _controller: AppBundle:Recepcion:reporteFechaelegir }
+
+reporteListaclientes:
+  path: /reporteListaclientes
+  defaults: { _controller: AppBundle:Recepcion:reporteListaclientes }
+
+reporteCliente:
+  path: /reporteCliente/{idcliente}
+  defaults: { _controller: AppBundle:Recepcion:reporteCliente }
+
 #funciones de catalogo
 
 catalogoProductos:

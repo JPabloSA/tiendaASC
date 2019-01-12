@@ -10,36 +10,15 @@
   </div>
 
   <div class="container-fluid">
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Cliente</th>
-            <th>Socia</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for pedido in pedidos %}
-          <tr>
-            <td>{{pedido.Fecha | date('d-m-Y')}}</td>
-            <td>{{pedido.Usuariosusuarios.UsNombre}}</td>
-            <td>
-              {% if pedido.Sociassocias != null %}
-                {{pedido.Sociassocias.SocDatos}}
-              {% endif %}
-            </td>
-            <td>
-              {{pedido.SaldoSocias}}
-            </td>
-          </tr>
-        {% endfor %}
-          
-        </tbody>
-      </table>
-    </div>
+    <center>
+      <a class="btn btn-primary btn-lg" href="{{path('reporteFechaelegir')}}">
+        <i class="fas fa-file-invoice-dollar"></i> Reporte Ventas
+      </a>
+      <a class="btn btn-primary btn-lg" href="{{path('reporteListaclientes')}}">
+        <i class="fas fa-user-tag"></i> Reporte Clientes
+      </a>
+    </center>
+
   </div>
-	
     
 {% endblock %}

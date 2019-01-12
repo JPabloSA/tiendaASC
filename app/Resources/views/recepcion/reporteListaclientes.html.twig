@@ -1,0 +1,39 @@
+{% extends 'baserecepcion.html.twig' %}
+{% block style_body %}
+  <body>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <h1 class="alert-info">Elegir cliente</h1>
+  </div>
+
+    <div class="container-fluid">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{cliente.UsNombre}}</td>
+                        <td>{{cliente.UsDireccion}}</td>
+                        <td>{{cliente.UsTelefono}}</td>
+                        <td>
+                            <a class="btn btn-primary" href="{{path('reporteCliente',{idcliente:cliente.Idusuarios})}}">Detalles</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>    
+    </div>
+    <div class="container-fluid">
+        <a class="btn btn-danger" href="{{path('reportesRecepcion')}}"> Cancelar </a>
+    </div>
+    
+{% endblock %}

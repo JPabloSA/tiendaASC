@@ -1,0 +1,72 @@
+{% extends 'baserecepcion.html.twig' %}
+{% block style_body %}
+  <body>
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <h1 class="alert-info">Reportes Cliente </h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{cliente.UsNombre}}</td>
+                <td>{{cliente.UsDireccion}}</td>
+                <td>{{cliente.UsTelefono}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+
+<div class="container-fluid">
+  <br>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Socia</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for pedido in pedidos %}
+          <tr>
+            <td>{{pedido.Fecha | date('d-m-Y')}}</td>
+            <td>
+              {% if pedido.Sociassocias != null %}
+                {{pedido.Sociassocias.SocDatos}}
+              {% endif %}
+            </td>
+            <td>
+              {{pedido.SaldoSocias}}
+            </td>
+          </tr>
+        {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+      <h2>Total Ingresos: {{total}}</h2>
+
+      <button class="btn btn-primary">
+        <i class="fas fa-file-pdf"></i> Descargar Pdf
+      </button>
+
+      <a class="btn btn-danger" href="{{path('reportesRecepcion')}}">
+        <i class="fas fa-arrow-left"></i> Volver
+      </a>
+  </div>
+    
+{% endblock %}  
+

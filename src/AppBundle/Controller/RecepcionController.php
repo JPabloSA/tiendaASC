@@ -16,6 +16,8 @@ use AppBundle\Entity\Socias;
 use AppBundle\Form\SociasType;
 use AppBundle\Entity\ComprobantePago;
 use AppBundle\Form\ComprobantePagoType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use AppBundle\Entity\Usuario;
 
 
 
@@ -228,7 +230,129 @@ class RecepcionController extends Controller
     	return $this->render("recepcion/reportesRecepcion.html.twig",array(
 			'pedidos' => $pedidos
 		));
+	}
+	
+	public function reporteFechaelegirAction(Request $request){
+		$form=$this->createFormBuilder()
+      ->add('fechainicial',DateType::class, array(
+        // render as a single text box
+        'widget' => 'single_text','label'=>'Fecha Inicio','attr'=>array('class'=>'form-control'),
+        ))
+      ->add('fechafinal',DateType::class, array(
+        // render as a single text box
+        'widget' => 'single_text','label'=>'Fecha Final','attr'=>array('class'=>'form-control'),
+        ))
+	  ->getForm();
+	  
+	  $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+         $fechas=$form->getData();
+        // but, the original `$task` variable has also been updated
+		$fechainicial = $form->get("fechainicial")->getData();
+		$fechafinal = $form->get("fechafinal")->getData();
+
+		$hoy=new \DateTime("now");
+		$hoy2=new \DateTime($hoy->format("Y-m-d")." 23:59:59");
+		
+		$fechaini=new \DateTime($fechainicial->format("Y-m-d")." 00:00:00");
+		$fechafin=new \DateTime($fechafinal->format("Y-m-d")." 23:59:59");
+
+		if (empty($fechainicial) || empty($fechafinal)) {
+			return $this->render('recepcion/reporteFechaelegir.html.twig',array(
+				'form'=>$form->createView()
+			));			
+		}else{
+			if ($fechaini <= $hoy2) {
+				if($fechaini<=$fechafin){
+					$repository = $this->getDoctrine()->getRepository(EntregaProductos::class);
+	
+					// createQueryBuilder() automatically selects FROM AppBundle:Product
+					// and aliases it to "p"
+					$entityManager = $this->getDoctrine()->getManager();
+					$query = $repository->createQueryBuilder('p')
+						->where('p.fecha >= :fecha1')
+						->andWhere('p.fecha <= :fecha2')
+						->setParameter('fecha1', $fechaini)
+						->setParameter('fecha2', $fechafin)
+						->orderBy('p.fecha', 'ASC')
+						->getQuery();
+	
+					$pedidos = $query->getResult();
+	
+					// ... perform some action, such as saving the task to the database
+					// for example, if Task is a Doctrine entity, save it!
+					// $entityManager = $this->getDoctrine()->getManager();
+					// $entityManager->persist($task);
+					// $entityManager->flush();
+					$total=0;
+					foreach ($pedidos as $ped) {
+						$total=$total+$ped->getSaldoSocias();
+					}
+	
+					return $this->render("recepcion/reporteRecepcionfecha.html.twig",array(
+						'pedidos' => $pedidos,
+						'fechainicial' =>$fechainicial,
+						'fechafinal' => $fechafinal,
+						'total' => $total
+					));
+				}
+			}
+
+		}
+		
     }
+
+      return $this->render('recepcion/reporteFechaelegir.html.twig',
+      array('form'=>$form->createView()));
+	}
+
+	public function reporteListaclientesAction(){
+		$clientes = $this->getDoctrine()->getRepository(Usuario::class)->findBy(array(
+			'rol' => "Cliente"
+		));
+
+		return $this->render('recepcion/reporteListaclientes.html.twig',array(
+			'clientes' => $clientes
+		));
+
+	}
+
+	public function reporteClienteAction($idcliente){
+		$cliente = $this->getDoctrine()->getRepository(Usuario::class)->findOneByIdusuarios($idcliente);
+
+		$repository = $this->getDoctrine()->getRepository(EntregaProductos::class);
+	
+					// createQueryBuilder() automatically selects FROM AppBundle:Product
+					// and aliases it to "p"
+					$entityManager = $this->getDoctrine()->getManager();
+					$query = $repository->createQueryBuilder('p')
+						->where('p.usuariosusuarios = :cliente')
+						->setParameter('cliente', $cliente)
+						->orderBy('p.fecha', 'ASC')
+						->getQuery();
+	
+					$pedidos = $query->getResult();
+	
+					// ... perform some action, such as saving the task to the database
+					// for example, if Task is a Doctrine entity, save it!
+					// $entityManager = $this->getDoctrine()->getManager();
+					// $entityManager->persist($task);
+					// $entityManager->flush();
+					$total=0;
+					foreach ($pedidos as $ped) {
+						$total=$total+$ped->getSaldoSocias();
+					}
+	
+					return $this->render("recepcion/reporteCliente.html.twig",array(
+						'pedidos' => $pedidos,
+						'cliente' =>$cliente,
+						'total' => $total
+					));
+				
+
+		return $this->render('recepcion/reporteCliente.html.twig');
+	}
 
 
 }
